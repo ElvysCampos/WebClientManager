@@ -4,6 +4,7 @@ import {
   deleteUserController,
   readUsersController,
   updateUserController,
+  userIDController,
 } from "../controllers/users.controller";
 import { ensureTokenIsValidExists } from "../middlewares/login.middleware";
 import ensureSchemaMiddleware from "../middlewares/schema.middleware";
@@ -17,6 +18,7 @@ userRoutes.post(
   createUserController
 );
 userRoutes.get("", ensureTokenIsValidExists, readUsersController);
+userRoutes.get("/:id", ensureTokenIsValidExists, userIDController);
 userRoutes.patch(
   "/:id",
   ensureTokenIsValidExists,
