@@ -9,9 +9,9 @@ const CardContact = ({ contact }: CardProps) => {
   return (
     <div className="flex flex-row justify-end bg-gray-100 w-60 h-40 rounded-lg">
       <div className="flex justify-center flex-col gap-3 items-center w-[100%]">
-        <p>{contact.fullName}</p>
+        <p>{contact.name}</p>
         <p>{contact.email}</p>
-        <p>{contact.telefone}</p>
+        <p>{contact.phone_number}</p>
       </div>
       <div className="bg-black flex justify-center rounded-e flex-col">
         <button>

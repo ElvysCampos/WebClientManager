@@ -2,9 +2,9 @@ import { z } from "zod";
 
 const contactsSchema = z.object({
   id: z.string(),
-  fullName: z.string(),
+  name: z.string(),
   email: z.string(),
-  telefone: z.string(),
+  phone_number: z.string(),
   createAt: z.string(),
 });
 
