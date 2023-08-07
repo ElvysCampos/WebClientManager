@@ -10,7 +10,7 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = ({ user }) => {
   return (
     <main
-      className={`body flex min-h-screen flex-col items-center justify-between p-24`}
+      className={`body grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 justify-items-center p-24`}
     >
       {user.map((users) => {
         return <Card key={users.id} user={users} />;

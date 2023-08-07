@@ -9,7 +9,7 @@ const Card = ({ user }: CardProps) => {
   return (
     <div className="flex flex-row justify-items-end bg-blue-900 w-72 h-64 rounded-lg">
       <div className="flex flex-col items-center min-w-56">
-        <p>{user.name}</p>
+        <p className="m-3 text-xl">{user.name}</p>
         <Image
           className="m-4 mb-2 w-52 h-[11.5rem]"
           width={209}
