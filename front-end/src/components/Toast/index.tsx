@@ -5,7 +5,7 @@ interface ToastProps {
   isSucess?: boolean;
 }
 
-export const Toast = ({ message, isSucess = false }: ToastProps) => {
+const Toast = ({ message, isSucess = false }: ToastProps) => {
   return isSucess
     ? toast.success(message, {
         position: "top-right",
@@ -15,7 +15,7 @@ export const Toast = ({ message, isSucess = false }: ToastProps) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "colored",
       })
     : toast.error(message, {
         position: "top-right",
@@ -25,7 +25,7 @@ export const Toast = ({ message, isSucess = false }: ToastProps) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "colored",
       });
 };
 

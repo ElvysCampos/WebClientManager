@@ -1,5 +1,6 @@
-import { useAuth } from "@/context/authContext";
-import { LoginData, loginSchema } from "@/schemas/users.schema";
+import { useAuth } from "@/contexts/Auth/auth.context";
+import { loginSchema } from "@/schemas/loginSchema";
+import { LoginData } from "@/types/login.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -9,11 +10,11 @@ const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const {login} = useAuth()
+  const { login } = useAuth();
 
-  const onFormsubmit = (FormData: LoginData) => {
-    console.log(FormData);
-    login(FormData)
+  const onFormsubmit = (formData: LoginData) => {
+    console.log(formData);
+    login(formData);
   };
   return (
     <div className="user-form-container">

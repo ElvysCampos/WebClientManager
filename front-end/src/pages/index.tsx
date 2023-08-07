@@ -1,28 +1,33 @@
+import Image from "next/image";
+import { Inter } from "next/font/google";
 import { GetServerSideProps, NextPage } from "next";
-import { UserData } from "@/schemas/users.schema";
 import api from "@/services/api";
-import Card from "@/components/card";
+import { TContactData } from "@/types/schema.types";
+import CardContact from "@/components/CardContact";
+
+const inter = Inter({ subsets: ["latin"] });
 
 interface HomeProps {
-  user: UserData[];
+  contacts: TContactData[];
 }
 
-const Home: NextPage<HomeProps> = ({ user }) => {
+const Home: NextPage<HomeProps> = ({ contacts }: HomeProps) => {
   return (
     <main
-      className={`body grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 justify-items-center p-24`}
+      className={` body grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 justify-center px-34 py-20 min-h-screen min-w-screen ${inter.className}`}
     >
-      {user.map((users) => {
-        return <Card key={users.id} user={users} />;
+      {contacts.map((contact) => {
+        return <CardContact key={contact.id} contact={contact} />;
       })}
     </main>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await api.get<UserData[]>("/users");
+  const response = await api.get<TContactData[]>("/contacts");
+
   return {
-    props: { user: response.data },
+    props: { contacts: response.data },
   };
 };
 

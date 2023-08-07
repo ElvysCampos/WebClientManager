@@ -1,9 +1,8 @@
-import Toast from "@/components/toast";
-import { LoginData, UserData } from "@/schemas/users.schema";
-
+import Toast from "@/components/Toast";
 import api from "@/services/api";
+import { LoginData } from "@/types/login.types";
+import { UserData } from "@/types/register.types";
 import { useRouter } from "next/router";
-import { setCookie } from "nookies";
 import {
   Dispatch,
   ReactNode,
@@ -26,47 +25,39 @@ interface authProviderData {
 
 const authContext = createContext<authProviderData>({} as authProviderData);
 
-export function AuthProvider({ children }: Props) {
+export const AuthProvider = ({ children }: Props) => {
   const [token, setToken] = useState<string>("");
   const router = useRouter();
 
   const register = (userData: UserData) => {
     api
       .post("/users", userData)
-      .then(() => {
-        Toast({ message: "usuário criado com sucesso !", isSucess: true });
-        router.push("/login");
+      .then((response) => {
+        Toast({ message: "Usuário Criado com Sucesso!", isSucess: true }),
+          router.push("/login");
       })
       .catch((err) => {
-        console.log(err);
-        Toast({ message: "Erro ao criar o usuário" });
+        Toast({ message: "Erro ao Criar o Usuário!" }), console.log(err);
       });
   };
 
   const login = (loginData: LoginData) => {
     api
       .post("/login", loginData)
-      .then((response) => {
-        setCookie(null, "kenziefy.token", response.data.token, {
-          maxAge: 60 * 30,
-          path: "/",
-        });
-        Toast({ message: "login realizado com sucesso !", isSucess: true });
-        router.push("/");
+      .then(() => {
+        Toast({ message: "Login Realizado com Sucesso!", isSucess: true }),
+          router.push("/");
       })
       .catch((err) => {
-        console.log(err);
-        Toast({
-          message:
-            "Erro ao logar, verifique se o e-mail e senha estão corretos",
-        });
+        Toast({ message: "Email e/ou Senha incorretos !" }), console.log(err);
       });
   };
+
   return (
     <authContext.Provider value={{ login, register, token, setToken }}>
       {children}
     </authContext.Provider>
   );
-}
+};
 
 export const useAuth = () => useContext(authContext);
