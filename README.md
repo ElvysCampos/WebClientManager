@@ -1,4 +1,4 @@
-Web Client Manager API
+<h1> Web Client Manager API </h1> 
 
 A API foi desenvolvida utilizando Express.
 
@@ -15,12 +15,15 @@ Para a API ser visualizada, você deverá seguir os seguintes passos:
 	Create User: 
 
 pasta só preencher os dados seguindo o exemplo abaixo:
+<p>
 {
   "name":"teste12345",
   "email":"teste11234@mail.com",
   "password":"123456",
   "phone_number":"9668558745"
 }
+</p>
+
 
 	Que após cadastrar seu user com nome e os dados que preferir, já pode fazer o login.
 
