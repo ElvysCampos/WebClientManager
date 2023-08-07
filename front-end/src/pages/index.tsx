@@ -4,11 +4,13 @@ import { GetServerSideProps, NextPage } from "next";
 import api from "@/services/api";
 import { TContactData } from "@/types/schema.types";
 import CardContact from "@/components/CardContact";
+import { LoginData } from "@/types/login.types";
 
 const inter = Inter({ subsets: ["latin"] });
 
 interface HomeProps {
   contacts: TContactData[];
+  Logindata: LoginData[];
 }
 
 const Home: NextPage<HomeProps> = ({ contacts }: HomeProps) => {
@@ -25,9 +27,10 @@ const Home: NextPage<HomeProps> = ({ contacts }: HomeProps) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const response = await api.get<TContactData[]>("/contacts");
+  const login = await api.get<TContactData[]>("/login");
 
   return {
-    props: { contacts: response.data },
+    props: { Logindata: login.data },
   };
 };
 
